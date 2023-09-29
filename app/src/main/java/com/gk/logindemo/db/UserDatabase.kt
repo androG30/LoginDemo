@@ -5,22 +5,22 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [RegisterUser::class], version = 1)
+@Database(entities = [User::class], version = 1)
 
-abstract class RegisterUserDatabase : RoomDatabase() {
+abstract class UserDatabase : RoomDatabase() {
 
-    abstract val registerUserDAO: RegisterUserDAO
+    abstract val userDAO: UserDAO
 
     companion object{
         @Volatile
-        private var INSTANCE : RegisterUserDatabase? = null
-        fun getInstance(context: Context) : RegisterUserDatabase{
+        private var INSTANCE : UserDatabase? = null
+        fun getInstance(context: Context) : UserDatabase{
             synchronized(this){
                 var instance = INSTANCE
                 if(instance == null){
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        RegisterUserDatabase::class.java,
+                        UserDatabase::class.java,
                         "register_user_data_table"
                     ).build()
                     INSTANCE = instance

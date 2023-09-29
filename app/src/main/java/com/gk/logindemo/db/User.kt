@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "register_user_data_table")
-data class RegisterUser(
+data class User(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "register_id")

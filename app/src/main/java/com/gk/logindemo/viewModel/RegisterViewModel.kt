@@ -4,18 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gk.logindemo.db.RegisterUser
-import com.gk.logindemo.db.RegisterUserRepository
+import com.gk.logindemo.db.User
+import com.gk.logindemo.db.UserRepository
 import com.gk.rfidkotlin.utils.Event
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class RegisterViewModel(private val repository: RegisterUserRepository) : ViewModel() {
-
-    val users = repository.users
-
-    private lateinit var registerUser: RegisterUser
+class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
 
     val userNameEt = MutableLiveData<String>()
     val emailEt = MutableLiveData<String>()
@@ -41,7 +37,7 @@ class RegisterViewModel(private val repository: RegisterUserRepository) : ViewMo
             val course = courseEt.value!!
             val password = passwordEt.value!!
 
-            insert(RegisterUser(0, username, email, course, password))
+            insert(User(0, username, email, course, password))
             userNameEt.value = ""
             emailEt.value = ""
             courseEt.value = ""
@@ -49,7 +45,7 @@ class RegisterViewModel(private val repository: RegisterUserRepository) : ViewMo
         }
     }
 
-    private fun insert(registerUser: RegisterUser) = viewModelScope.launch(Dispatchers.IO) {
+    private fun insert(registerUser: User) = viewModelScope.launch(Dispatchers.IO) {
         val newRowId = repository.insert(registerUser)
 
         withContext(Dispatchers.Main) {
