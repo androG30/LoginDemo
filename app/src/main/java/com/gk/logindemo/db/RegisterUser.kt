@@ -12,14 +12,14 @@ data class RegisterUser(
     val id: Int,
 
     @ColumnInfo(name = "register_username")
-    val username: String,
+    var username: String,
 
     @ColumnInfo(name = "register_email")
-    val email: String,
+    var email: String,
 
     @ColumnInfo(name = "register_course")
-    val course: String,
+    var course: String,
 
     @ColumnInfo(name = "register_password")
-    val password: String,
+    var password: String,
 )
