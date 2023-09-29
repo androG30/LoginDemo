@@ -46,13 +46,22 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     private fun insert(registerUser: User) = viewModelScope.launch(Dispatchers.IO) {
-        val newRowId = repository.insert(registerUser)
 
-        withContext(Dispatchers.Main) {
-            if (newRowId > -1) {
-                statusMessage.value = Event("User Inserted Successfully! $newRowId")
-            } else {
-                statusMessage.value = Event("Error Occurred!")
+        val user = repository.getUserFromUserName(registerUser.username)
+
+        if(user == null){
+            val newRowId = repository.insert(registerUser)
+
+            withContext(Dispatchers.Main) {
+                if (newRowId > -1) {
+                    statusMessage.value = Event("User Inserted Successfully! $newRowId")
+                } else {
+                    statusMessage.value = Event("Error Occurred!")
+                }
+            }
+        }else{
+            withContext(Dispatchers.Main) {
+                statusMessage.value = Event("User already exist!")
             }
         }
     }
