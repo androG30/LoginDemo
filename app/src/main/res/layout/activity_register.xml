@@ -89,7 +89,7 @@
                         android:drawablePadding="12dp"
                         android:hint="@string/Username"
                         android:inputType="text"
-                        android:text="@={registerModel.userName}" />
+                        android:text="@={registerModel.userNameEt}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -116,7 +116,7 @@
                         android:drawablePadding="12dp"
                         android:hint="@string/Email"
                         android:inputType="text"
-                        android:text="@={registerModel.email}" />
+                        android:text="@={registerModel.emailEt}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -143,7 +143,7 @@
                         android:drawablePadding="12dp"
                         android:hint="@string/Course"
                         android:inputType="text"
-                        android:text="@={registerModel.course}" />
+                        android:text="@={registerModel.courseEt}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -170,7 +170,7 @@
                         android:drawablePadding="12dp"
                         android:hint="@string/Password"
                         android:inputType="text"
-                        android:text="@={registerModel.password}" />
+                        android:text="@={registerModel.passwordEt}" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 

@@ -17,31 +17,35 @@ class RegisterViewModel(private val repository: RegisterUserRepository) : ViewMo
 
     private lateinit var registerUser: RegisterUser
 
-     val userName = MutableLiveData<String>()
-     val email = MutableLiveData<String>()
-     val course = MutableLiveData<String>()
-     val password = MutableLiveData<String>()
+    val userNameEt = MutableLiveData<String>()
+    val emailEt = MutableLiveData<String>()
+    val courseEt = MutableLiveData<String>()
+    val passwordEt = MutableLiveData<String>()
 
     private val statusMessage = MutableLiveData<Event<String>>()
 
     val message: LiveData<Event<String>> get() = statusMessage
 
     fun registerUser() {
-        if (userName.value == null) {
+        if (userNameEt.value == null) {
             statusMessage.value = Event("Please enter username")
-        } else if (email.value == null) {
+        } else if (emailEt.value == null) {
             statusMessage.value = Event("Please enter email")
-        } else if (course.value == null) {
+        } else if (courseEt.value == null) {
             statusMessage.value = Event("Please enter course")
-        } else if (password.value == null) {
+        } else if (passwordEt.value == null) {
             statusMessage.value = Event("Please enter password")
         } else {
-            registerUser.username = userName.value!!
-            registerUser.email = email.value!!
-            registerUser.course = course.value!!
-            registerUser.password = password.value!!
+            val username = userNameEt.value!!
+            val email = emailEt.value!!
+            val course = courseEt.value!!
+            val password = passwordEt.value!!
 
-            insert(registerUser)
+            insert(RegisterUser(0, username, email, course, password))
+            userNameEt.value = ""
+            emailEt.value = ""
+            courseEt.value = ""
+            passwordEt.value = ""
         }
     }
 
